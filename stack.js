@@ -1,32 +1,46 @@
 const stack = {
-  initStack: [1],
-  peek: function () {
-    if (this.initStack.length === 0) return "Empty";
-    return this.initStack[0];
-  },
-  pop: function () {
-    this.initStack.shift();
-  },
-  add: function (x) {
-    this.initStack.unshift(x);
-  },
-  get: function () {
-    return this.initStack;
-  },
-  getArr: () => {
-    return this.initStack;
-  },
+	initStack: [],
+
+	isEmpty: function () {
+		return this.initStack.length === 0;
+	},
+	peek: function () {
+		if (this.initStack.length === 0) return "Empty";
+		return this.initStack[0];
+	},
+	pop: function () {
+		this.initStack.shift();
+	},
+	add: function (x) {
+		this.initStack.unshift(x);
+	},
+	get: function () {
+		return this.initStack;
+	},
 };
 
-stack.add(2);
-stack.add(22);
-stack.pop();
-stack.pop();
-stack.pop();
-const check = stack.peek.bind(stack);
+// valid parentheses check using stack
 
-console.log(stack.get());
+// const parethList = "()[]{}";
 
-console.log(check());
+// const parethList1 = "(";
 
-console.log(stack.peek());
+const checkParanth = (str) => {
+	if (str.length === 0) return true;
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] === "(") {
+			stack.add(")");
+		} else if (str[i] === "{") {
+			stack.add("}");
+		} else if (str[i] === "[") {
+			stack.add("]");
+		} else {
+			if (stack.peek() === str[i]) stack.pop();
+			else return false;
+		}
+	}
+
+	return stack.isEmpty();
+};
+
+console.log(checkParanth(parethList1));

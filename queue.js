@@ -1,6 +1,6 @@
 import { ListNode } from "./resources.js";
 
-class Linked {
+class Queue {
 	constructor() {
 		this.head = new ListNode(null);
 		this.tail = new ListNode(null);
@@ -8,19 +8,19 @@ class Linked {
 		this.size = 0;
 	}
 
-	addLast(node) {
-		if (this.size === 0) {
-			this.head = node;
-			this.tail = node;
-		} else {
-			node.prev = this.tail;
-			this.tail.next = node;
-			this.tail = this.tail.next;
-		}
-		this.size++;
-	}
+	// enQueue(node) {
+	// 	if (this.size === 0) {
+	// 		this.head = node;
+	// 		this.tail = node;
+	// 	} else {
+	// 		node.prev = this.tail;
+	// 		this.tail.next = node;
+	// 		this.tail = this.tail.next;
+	// 	}
+	// 	this.size++;
+	// }
 
-	addFirst(node) {
+	enQueue(node) {
 		if (this.size === 0) {
 			this.head = node;
 			this.tail = node;
@@ -48,7 +48,7 @@ class Linked {
 		this.head.prev = null;
 	}
 
-	removeLast() {
+	deQueue() {
 		if (this.size === 0) {
 			return "empty";
 		} else {
@@ -113,14 +113,16 @@ class Linked {
 	}
 }
 
-const testing = new Linked();
-testing.addLast(new ListNode(1));
-testing.addLast(new ListNode(5));
-testing.addLast(new ListNode(15));
-testing.addLast(new ListNode(65));
-testing.addLast(new ListNode(51));
-testing.addLast(new ListNode(45));
-testing.addLast(new ListNode(95));
+const testing = new Queue();
+testing.enQueue(new ListNode(1));
+testing.enQueue(new ListNode(5));
+testing.enQueue(new ListNode(15));
+testing.enQueue(new ListNode(65));
+testing.enQueue(new ListNode(51));
+testing.enQueue(new ListNode(45));
+testing.enQueue(new ListNode(95));
+
+testing.deQueue();
 // testing.removeAt(3);
 
 // testing.remove(testing.getHead().next.next);

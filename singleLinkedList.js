@@ -1,10 +1,10 @@
-import { ListNode } from "./resources.js";
+import { singleNode } from "./resources.js";
 
-class Linked {
+class LinkedSingle {
 	constructor() {
-		this.head = new ListNode(null);
-		this.tail = new ListNode(null);
-		this.trav = new ListNode(null);
+		this.head = new singleNode(null);
+		this.tail = new singleNode(null);
+		this.trav = new singleNode(null);
 		this.size = 0;
 	}
 
@@ -13,7 +13,6 @@ class Linked {
 			this.head = node;
 			this.tail = node;
 		} else {
-			node.prev = this.tail;
 			this.tail.next = node;
 			this.tail = this.tail.next;
 		}
@@ -26,8 +25,7 @@ class Linked {
 			this.tail = node;
 		} else {
 			node.next = this.head;
-			this.head.prev = node;
-			this.head = this.head.prev;
+			this.head = node;
 		}
 		this.size++;
 	}
@@ -35,9 +33,11 @@ class Linked {
 	removeFirst() {
 		if (this.size === 0) {
 			return "empty";
-		} else {
-			this.head = this.head.next;
 		}
+		let oldHead = this.head;
+
+		this.head = this.head.next;
+
 		this.size--;
 
 		if (this.size === 0) {
@@ -45,15 +45,21 @@ class Linked {
 			return;
 		}
 
-		this.head.prev = null;
+		oldHead = null;
 	}
 
 	removeLast() {
 		if (this.size === 0) {
 			return "empty";
-		} else {
-			this.tail = this.tail.prev;
 		}
+
+		this.trav = this.head;
+
+		for (let i = 0; i < this.size - 1; i++) {
+			this.trav = this.trav.next;
+		}
+
+		this.tail = this.trav;
 
 		this.size--;
 
@@ -65,27 +71,24 @@ class Linked {
 		this.tail.next = null;
 	}
 
-	remove(node) {
-		node.prev.next = node.next;
-		node.next.prev = node.prev;
+	remove(prevNode, node) {
+		prevNode.next = node.next;
 		node = null;
 		this.size--;
 	}
 
 	removeAt(index) {
-		if (index < this.size / 2) {
-			this.trav = this.head;
-			for (let i = 0; i != index; i++) {
-				this.trav = this.trav.next;
-			}
-		} else {
-			this.trav = this.tail;
-			for (let i = this.size - 1; i != index; i--) {
-				this.trav = this.trav.prev;
-			}
+		if (this.size === 0) {
+			return "empty";
 		}
 
-		return this.remove(this.trav);
+		this.trav = this.head;
+
+		for (let i = 0; i !== index - 1; i++) {
+			this.trav = this.trav.next;
+		}
+
+		return this.remove(this.trav, this.trav.next);
 	}
 
 	printAll() {
@@ -112,17 +115,26 @@ class Linked {
 		return this.size;
 	}
 }
+const testing = new LinkedSingle();
+testing.addLast(new singleNode(1));
+testing.addLast(new singleNode(5));
+testing.addLast(new singleNode(15));
+testing.addLast(new singleNode(65));
+testing.addLast(new singleNode(51));
+testing.addLast(new singleNode(45));
+testing.addLast(new singleNode(95));
+testing.addFirst(new singleNode(-10));
 
-const testing = new Linked();
-testing.addLast(new ListNode(1));
-testing.addLast(new ListNode(5));
-testing.addLast(new ListNode(15));
-testing.addLast(new ListNode(65));
-testing.addLast(new ListNode(51));
-testing.addLast(new ListNode(45));
-testing.addLast(new ListNode(95));
-// testing.removeAt(3);
+testing.removeAt(3);
+
+// const headData = testing.getHead();
+
+// console.log(headData);
+
+const tailData = testing.getTail();
+
+console.log(tailData);
 
 // testing.remove(testing.getHead().next.next);
 
-console.log(testing.printAll());
+// console.log(testing.printAll());

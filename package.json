@@ -1,0 +1,20 @@
+{
+	"name": "y",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "",
+	"main": "linkedList.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DimitarIvanov7/DSA.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/DimitarIvanov7/DSA/issues"
+	},
+	"homepage": "https://github.com/DimitarIvanov7/DSA#readme"
+}
