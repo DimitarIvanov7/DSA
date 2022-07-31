@@ -1,11 +1,8 @@
 var generate = function (numRows) {
-  let res = [[1]];
   const reqFunc = (n) => {
     if (n === 1) return [1, 1];
 
     const prevArr = reqFunc(n - 1);
-
-    res.push(prevArr);
 
     const newArr = [1];
 
@@ -15,14 +12,14 @@ var generate = function (numRows) {
 
     newArr.push(1);
 
+    console.log(n);
+
     return newArr;
   };
 
-  reqFunc(numRows);
-
-  return res;
+  return reqFunc(numRows);
 };
 
-const result = generate(5);
+const result = generate(53);
 
 console.log(result);

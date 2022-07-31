@@ -16,5 +16,8 @@
 	"bugs": {
 		"url": "https://github.com/DimitarIvanov7/DSA/issues"
 	},
-	"homepage": "https://github.com/DimitarIvanov7/DSA#readme"
+	"homepage": "https://github.com/DimitarIvanov7/DSA#readme",
+	"dependencies": {
+		"readline": "^1.3.0"
+	}
 }

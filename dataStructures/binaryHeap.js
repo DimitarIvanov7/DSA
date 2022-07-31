@@ -1,4 +1,4 @@
-import { justNode } from "./resources.js";
+import { justNode } from "../resources.js";
 
 class BinHeap {
 	constructor() {
